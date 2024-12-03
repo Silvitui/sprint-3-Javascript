@@ -293,10 +293,70 @@ describe('Function "orderByYear"', () => {
 // Exercise 6
 // YOUR CODE HERE. Test moviesAverageByCategory()
 describe('Function "moviesAverageByCategory"', () => {
-  it('ADD YOUR CODE IN films.spec.js file', () => {
-    expect(typeof hoursToMinutes).toBe('coffee');
+  it('it should be declared', () => {
+    expect(typeof moviesAverageByCategory).toBe("function");
   });
-});
+  it('it should return a number' ,() => {
+    expect(typeof moviesAverageByCategory(movies, "Action")).toBe("number")
+
+  });
+  it('should be different from NaN', () => {
+    const result = moviesAverageByCategory(movies, "Action");
+    expect(result).not.toBeNaN();
+  });
+  
+
+  });
+  it('should calculate the average score  for any given genre, rounded to 2 decimals', () => {
+    const exampleMovies = [
+      {
+        title: 'Interstellar',
+        year: 2014,
+        director: 'Christopher Nolan',
+        duration: '2h 49min',
+        genre: ['Adventure', 'Drama', 'Sci-Fi'],
+        score: 8.6
+      },
+      {
+        title: 'Star Wars: Episode VII - The Force Awakens',
+        year: 2015,
+        director: 'J.J. Abrams',
+        duration: '2h 16min',
+        genre: ['Action', 'Adventure', 'Fantasy', 'Sci-Fi'],
+        score: 8.1
+      },
+      {
+        title: "Schindler's List",
+        year: 1993,
+        director: 'Steven Spielberg',
+        duration: '3h 15min',
+        genre: ['Biography', 'Drama', 'History'],
+        score: 8.9
+      },
+      {
+        title: 'Inception',
+        year: 2010,
+        director: 'Christopher Nolan',
+        duration: '2h 28min',
+        genre: ['Action', 'Sci-Fi', 'Thriller'],
+        score: 8.8
+      },
+    ];
+    const testCases = [
+      { genre: "Adventure", expectedAverage: 8.35 }, 
+      { genre: "Action", expectedAverage: 8.45 },    
+      { genre: "Drama", expectedAverage: 8.75 },    
+      { genre: "Fantasy", expectedAverage: 8.1 },    
+      { genre: "Comedy", expectedAverage: 0 },       
+    ];
+  
+    testCases.forEach(({ genre, expectedAverage }) => {
+      const result = moviesAverageByCategory(exampleMovies, genre);
+      expect(result).toBe(expectedAverage);
+    });
+  });
+  
+
 
 // Exercise 7
 describe('Function "hoursToMinutes"', () => {
